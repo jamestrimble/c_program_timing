@@ -1,8 +1,12 @@
 #define _POSIX_C_SOURCE 199309L
 
+#include <stdbool.h>
 #include <time.h>
+#include "c_program_timing.h"
 
 struct timespec start_time;
+
+long time_limit_sec;
 
 // Based on https://gist.github.com/diabloneo/9619917
 struct timespec timespec_diff(struct timespec start,
@@ -21,6 +25,16 @@ struct timespec timespec_diff(struct timespec start,
 long timespec_to_msec(struct timespec ts)
 {
     return ts.tv_sec*1000 + ts.tv_nsec/1000000;
+}
+
+void set_time_limit_sec(long time_limit)
+{
+    time_limit_sec = time_limit;
+}
+
+bool time_limit_exceeded()
+{
+    return time_limit_sec && get_elapsed_timespec().tv_sec >= time_limit_sec;
 }
 
 void set_start_time()
