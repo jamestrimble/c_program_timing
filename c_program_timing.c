@@ -53,5 +53,3 @@ long get_elapsed_time_msec()
 {
     return timespec_to_msec(get_elapsed_timespec());
 }
-
-

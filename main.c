@@ -8,8 +8,7 @@ int fib(int n) {
 }
 
 int main(int argc, char **argv) {
-    long timelimit = argc>1 ? atoi(argv[1]) : 0;
-    set_time_limit_sec(timelimit);
+    set_time_limit_sec(argc>1 ? atoi(argv[1]) : 0);
     set_start_time();
     for (int i=0; i<45; i++) {
         int fib_i = fib(i);
